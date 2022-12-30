@@ -2,6 +2,7 @@
 
 abstract class  LocaleKeys {
   static const homePageTitle = 'homePageTitle';
-  static const title = 'title';
+  static const companyName = 'companyName';
+  static const requiredError = 'requiredError';
 
 }

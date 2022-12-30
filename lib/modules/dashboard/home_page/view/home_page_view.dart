@@ -1,10 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:sidgs_it_app/generated/locale_keys.g.dart';
+import 'package:sidgs_it_app/modules/common/component/common_button.dart';
+import 'package:sidgs_it_app/modules/dashboard/add_products_page/view/add_products_page_view.dart';
+import 'package:sidgs_it_app/modules/dashboard/home_page/view/employee_section_component.dart';
+import 'package:sidgs_it_app/modules/dashboard/home_page/view/home_page_app_bar.dart';
+import 'package:sidgs_it_app/modules/dashboard/home_page/view/item_stock_card.dart';
 import 'package:sidgs_it_app/modules/dashboard/home_page/view_model/home_page_view_model.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,54 +22,92 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
 class HomePageScaffold extends StatefulWidget {
   const HomePageScaffold({super.key});
-
 
   @override
   State<HomePageScaffold> createState() => _HomePageScaffoldState();
 }
 
 class _HomePageScaffoldState extends State<HomePageScaffold> {
+  HomePageViewModel get viewModel => context.read<HomePageViewModel>();
 
-  HomePageViewModel get viewModel =>
-      context.read<HomePageViewModel>();
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-
-        title: Text(LocaleKeys.homePageTitle.tr()),
-      ),
-      body: Center(
-
-        child: Observer(
-          builder: (context) {
-            return Column(
-
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'You have pushed the button this many times:',
+        body: SafeArea(
+            child: SingleChildScrollView(
+      child: Column(children: [
+        const HomePageAppBar(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  HomePageCard(
+                    itemName: "Laptop",
+                    availableStock: 125,
+                    icon: Icons.laptop_mac,
+                  ),
+                  HomePageCard(
+                    itemName: "Monitor",
+                    availableStock: 12,
+                    icon: Icons.monitor,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  HomePageCard(
+                    itemName: "Mouse",
+                    availableStock: 200,
+                    icon: Icons.mouse_outlined,
+                  ),
+                  HomePageCard(
+                    itemName: "HeadPhone",
+                    availableStock: 250,
+                    icon: Icons.headphones,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    CommonButton(
+                      onPressed: () => Navigator.of(context).pushNamed(AddProductsPage.route),
+                      title: "Add Product",
+                    ),
+                  ],
                 ),
-                Text(
-                  viewModel.counter.toString(),
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ],
-            );
-          },
-
+              )
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: ()=>viewModel.incrementCounter(),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Employee Section:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+
+            ],
+          ),
+        ),
+        SizedBox(height: 20,),
+        EmployeeSectionComponent()
+      ]),
+    )));
   }
 }
-
-
