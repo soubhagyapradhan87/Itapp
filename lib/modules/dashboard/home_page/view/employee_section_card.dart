@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sidgs_it_app/modules/dashboard/Add_employee_page/view/add_employee_page.dart';
+import 'package:sidgs_it_app/modules/dashboard/employee_list_page/view/employee_list_page.dart';
 
 class EmployeeSectionCard extends StatelessWidget {
 
@@ -13,6 +14,8 @@ class EmployeeSectionCard extends StatelessWidget {
       onTap: () {
         if(title=="Add Employee"){
           Navigator.of(context).pushNamed(AddEmployeePage.route);
+        }else if(title=="Employee Lists"){
+          Navigator.of(context).pushNamed(EmployeeListPage.route);
         }else{
           null;
         }

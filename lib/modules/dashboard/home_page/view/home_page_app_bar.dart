@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sidgs_it_app/modules/dashboard/employee_details_page/view/employee_details_page_view.dart';
 import 'package:sidgs_it_app/modules/dashboard/home_page/view/profile_card.dart';
 
 class HomePageAppBar extends StatefulWidget {
@@ -15,7 +14,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: InkWell(
-        onTap: ()=>Navigator.of(context).pushNamed(EmployeeDetailsPage.route),
+        onTap: (){},
         child: SizedBox(
           height: 64,
           child: Row(

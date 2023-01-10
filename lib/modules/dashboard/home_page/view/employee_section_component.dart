@@ -6,15 +6,15 @@ class EmployeeSectionComponent extends StatelessWidget {
 
   List employeeIcon = [
     Icons.person_add_alt_1_outlined,
+    Icons.person_remove_alt_1_outlined,
     Icons.groups_outlined,
-    Icons.devices_other_outlined,
 
 
   ];
    List employeeTitle = [
      "Add Employee",
+     "Remove Employee",
      "Employee Lists",
-     "Accessories Status",
 
    ];
   @override
