@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class EmployeeDetailsCard extends StatelessWidget {
-  String? title;
-  String? description;
-  EmployeeDetailsCard({Key? key,this.title,this.description}) : super(key: key);
+  final String? title;
+  final String? value;
+  const EmployeeDetailsCard({Key? key,this.title,this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class EmployeeDetailsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(title!,style: const TextStyle(fontSize: 14,color: Colors.black26),),
-            Text(description!,style: const TextStyle(fontSize: 18,color: Colors.black54))
+            Text(value!,style: const TextStyle(fontSize: 18,color: Colors.black54))
           ],
         ),
       ),

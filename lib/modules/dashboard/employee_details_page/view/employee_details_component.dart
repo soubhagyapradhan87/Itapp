@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sidgs_it_app/modules/dashboard/employee_details_page/view/employee_details_card.dart';
 
 class EmployeeDetailsComponent extends StatelessWidget {
-  const EmployeeDetailsComponent({Key? key}) : super(key: key);
+  const EmployeeDetailsComponent({Key? key,this.designation,this.empId,this.mobileNo,this.location,this.gender,this.officialMailId}) : super(key: key);
+
+  final String? designation,empId,mobileNo,location,gender,officialMailId;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,8 @@ class EmployeeDetailsComponent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               EmployeeDetailsCard(
-                title: "Full Name",
-                description: "Soubhagya Pradhan",
+                title: "Designation",
+                value: designation,
               ),
             ],
           ),
@@ -28,7 +30,7 @@ class EmployeeDetailsComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Emp ID",
-                description: "SID E-404",
+                value: empId,
               )),
               const SizedBox(
                 width: 10,
@@ -36,7 +38,7 @@ class EmployeeDetailsComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Mobile No",
-                description: "7008814182",
+                value: mobileNo,
               ))
             ],
           ),
@@ -49,7 +51,7 @@ class EmployeeDetailsComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Location",
-                description: "Hyderabad",
+                value: location,
               )),
               const SizedBox(
                 width: 10,
@@ -57,7 +59,7 @@ class EmployeeDetailsComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Gender",
-                description: "Male",
+                value: gender,
               ))
             ],
           ),
@@ -69,7 +71,7 @@ class EmployeeDetailsComponent extends StatelessWidget {
             children: [
               EmployeeDetailsCard(
                 title: "Official MailId",
-                description: "soubhagyap@sidgs.com",
+                value: officialMailId,
               ),
             ],
           ),

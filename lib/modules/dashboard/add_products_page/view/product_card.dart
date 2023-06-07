@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:sidgs_it_app/modules/dashboard/add_products_page/view_model/add_products_view_model.dart';
 
 class ProductCard extends StatefulWidget {
-  String? productName;
-  IconData? icon;
+  final String? productName;
+  final IconData? icon;
 
-  ProductCard({Key? key, this.productName, this.icon}) : super(key: key);
+  const ProductCard({Key? key, this.productName, this.icon}) : super(key: key);
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -27,7 +27,15 @@ class _ProductCardState extends State<ProductCard> {
           child: Container(
             width: viewModel.clickedCardString == widget.productName ?170:120,
             decoration: BoxDecoration(
-              color: viewModel.clickedCardString == widget.productName ? Colors.blueAccent : Colors.white,
+              color: viewModel.clickedCardString == widget.productName ? null : Colors.white,
+              gradient: viewModel.clickedCardString == widget.productName ? const LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.blue,
+                  Colors.cyan,
+                ],
+              ):null,
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.cyan, width: 0.5),
               boxShadow: const [

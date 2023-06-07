@@ -7,18 +7,17 @@ part 'add_employee_page_view_model.g.dart';
 class AddEmployeePageViewModel = _AddEmployeePageViewModel with _$AddEmployeePageViewModel;
 
 abstract class _AddEmployeePageViewModel with Store {
-
-
   @observable
-  int selectedRadio=0;
+  int selectedRadio = 0;
 
   @computed
   String? get accessoriesError {
-    if (selectedRadio==0) {
+    if (selectedRadio == 0) {
       return LocaleKeys.requiredError.tr();
     }
     return null;
   }
+
   @computed
   bool get canSubmit => accessoriesError == null;
 
@@ -26,5 +25,4 @@ abstract class _AddEmployeePageViewModel with Store {
   setSelectedRadio(int val) {
     selectedRadio = val;
   }
-
 }

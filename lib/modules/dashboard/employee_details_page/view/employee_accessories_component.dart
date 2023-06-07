@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sidgs_it_app/modules/dashboard/employee_details_page/view/employee_details_card.dart';
 
 class EmployeeAccessoriesComponent extends StatelessWidget {
-  const EmployeeAccessoriesComponent({Key? key}) : super(key: key);
+  const EmployeeAccessoriesComponent({Key? key, required this.laptopData, required this.desktopData}) : super(key: key);
+
+  final Map<String, dynamic>? laptopData, desktopData;
 
   @override
   Widget build(BuildContext context) {
@@ -10,19 +12,24 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Laptop Details:",style: TextStyle(fontSize:18,fontWeight: FontWeight.bold ),),
+              Text(
+                "Laptop Details:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               EmployeeDetailsCard(
                 title: "Device Name",
-                description: "DESKTOP-K153RRC",
+                value: laptopData?['deviceName'],
               ),
             ],
           ),
@@ -35,7 +42,7 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Company",
-                description: "Dell",
+                value: laptopData?['company'],
               )),
               const SizedBox(
                 width: 10,
@@ -43,7 +50,7 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Serial No",
-                description: "2R6ZNL3",
+                value: laptopData?['serialNo'],
               ))
             ],
           ),
@@ -56,7 +63,7 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "RAM",
-                description: "16 GB",
+                value: laptopData?['ram'],
               )),
               const SizedBox(
                 width: 10,
@@ -64,7 +71,7 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Hard Disk",
-                description: "512 GB",
+                value: laptopData?['hdd'],
               ))
             ],
           ),
@@ -77,7 +84,7 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Configuration",
-                description: "Window 10",
+                value: "Window 10",
               )),
               const SizedBox(
                 width: 10,
@@ -85,7 +92,7 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
               Expanded(
                   child: EmployeeDetailsCard(
                 title: "Processor",
-                description: "i7 Processor",
+                value: laptopData?['processor'],
               ))
             ],
           ),
@@ -297,7 +304,10 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Desktop Details:",style: TextStyle(fontSize:18,fontWeight: FontWeight.bold ),),
+              Text(
+                "Desktop Details:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
           const SizedBox(
@@ -308,17 +318,17 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
             children: [
               Expanded(
                   child: EmployeeDetailsCard(
-                    title: "Company",
-                    description: "Dell",
-                  )),
+                title: "Company",
+                value: "Dell",
+              )),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
                   child: EmployeeDetailsCard(
-                    title: "Model",
-                    description: "DELL-56467",
-                  ))
+                title: "Model",
+                value: "DELL-56467",
+              ))
             ],
           ),
           const SizedBox(
@@ -327,7 +337,10 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Mouse Details:",style: TextStyle(fontSize:18,fontWeight: FontWeight.bold ),),
+              Text(
+                "Mouse Details:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
           const SizedBox(
@@ -338,17 +351,17 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
             children: [
               Expanded(
                   child: EmployeeDetailsCard(
-                    title: "Company",
-                    description: "Dell",
-                  )),
+                title: "Company",
+                value: "Dell",
+              )),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
                   child: EmployeeDetailsCard(
-                    title: "Model",
-                    description: "DELL-m546",
-                  ))
+                title: "Model",
+                value: "DELL-m546",
+              ))
             ],
           ),
           const SizedBox(
@@ -357,7 +370,10 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Headphone Details:",style: TextStyle(fontSize:18,fontWeight: FontWeight.bold ),),
+              Text(
+                "Headphone Details:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
           const SizedBox(
@@ -368,17 +384,17 @@ class EmployeeAccessoriesComponent extends StatelessWidget {
             children: [
               Expanded(
                   child: EmployeeDetailsCard(
-                    title: "Company",
-                    description: "VTALK",
-                  )),
+                title: "Company",
+                value: "VTALK",
+              )),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
                   child: EmployeeDetailsCard(
-                    title: "Model",
-                    description: "vt-45gt5",
-                  ))
+                title: "Model",
+                value: "vt-45gt5",
+              ))
             ],
           ),
         ],

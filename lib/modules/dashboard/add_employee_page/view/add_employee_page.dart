@@ -3,7 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:sidgs_it_app/modules/common/component/common_button.dart';
 import 'package:sidgs_it_app/modules/dashboard/Add_employee_page/view_model/add_employee_page_view_model.dart';
-import 'package:sidgs_it_app/modules/dashboard/home_page/view/home_page_view.dart';
+import 'package:sidgs_it_app/modules/dashboard/accessories_page/view/accessories_page_view.dart';
+
 
 class AddEmployeePage extends StatelessWidget {
   const AddEmployeePage({Key? key}) : super(key: key);
@@ -31,11 +32,37 @@ class AddEmployeePageScaffold extends StatefulWidget {
 class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
   AddEmployeePageViewModel get viewModel => context.read<AddEmployeePageViewModel>();
   late TextEditingController _nameTextFieldController;
+  late TextEditingController _empIdTextFieldController;
+  late TextEditingController _mobileNoTextFieldController;
+  late TextEditingController _locationTextFieldController;
+  late TextEditingController _genderTextFieldController;
+  late TextEditingController _officialMailIdTextFieldController;
+  late TextEditingController _designationTextFieldController;
 
   @override
   void initState() {
     _nameTextFieldController = TextEditingController();
+    _empIdTextFieldController = TextEditingController();
+    _mobileNoTextFieldController = TextEditingController();
+    _locationTextFieldController = TextEditingController();
+    _genderTextFieldController = TextEditingController();
+    _officialMailIdTextFieldController = TextEditingController();
+    _designationTextFieldController = TextEditingController();
     super.initState();
+  }
+
+  void showSnackbar(BuildContext context, String message, Color color) {
+    final snackBar = SnackBar(
+      backgroundColor: color,
+      duration: Duration(seconds: 3),
+      content: Text(message),
+      action: SnackBarAction(
+        textColor: Colors.white,
+        label: 'dismiss',
+        onPressed: () {},
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -89,7 +116,7 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                       height: 10,
                     ),
                     TextField(
-                      controller: _nameTextFieldController,
+                      controller: _empIdTextFieldController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Employee Id',
@@ -99,7 +126,17 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                       height: 10,
                     ),
                     TextField(
-                      controller: _nameTextFieldController,
+                      controller: _designationTextFieldController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Designation',
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextField(
+                      controller: _mobileNoTextFieldController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Mobile No',
@@ -109,7 +146,7 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                       height: 10,
                     ),
                     TextField(
-                      controller: _nameTextFieldController,
+                      controller: _locationTextFieldController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Location',
@@ -119,7 +156,7 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                       height: 10,
                     ),
                     TextField(
-                      controller: _nameTextFieldController,
+                      controller: _genderTextFieldController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Gender',
@@ -129,7 +166,7 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                       height: 10,
                     ),
                     TextField(
-                      controller: _nameTextFieldController,
+                      controller: _officialMailIdTextFieldController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Official Mail Id',
@@ -138,9 +175,9 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Do you want to assign accessories?",
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -181,18 +218,32 @@ class _AddEmployeePageScaffoldState extends State<AddEmployeePageScaffold> {
                       children: [
                         CommonButton(
                           onPressed: viewModel.canSubmit
-                              ? () {
-                                  Navigator.of(context).pushNamed(HomePage.route);
+                              ? () async {
+                                  Navigator.of(context).pushNamed(AccessoriesPage.route);
+                                  // if (await FireBaseService()
+                                  //         .documentExistsInCollection("employees", _empIdTextFieldController.text) !=
+                                  //     true) {
+                                  //   FireBaseService().addEmployee(
+                                  //       _nameTextFieldController.text,
+                                  //       _empIdTextFieldController.text,
+                                  //       _designationTextFieldController.text,
+                                  //       _mobileNoTextFieldController.text,
+                                  //       _locationTextFieldController.text,
+                                  //       _genderTextFieldController.text,
+                                  //       _officialMailIdTextFieldController.text,
+                                  //       viewModel.selectedRadio == 1 ? true : false);
+                                  //   if (viewModel.selectedRadio == 1) {
+                                  //     Navigator.of(context).pushNamed(AccessoriesPage.route);
+                                  //   } else {
+                                  //     Navigator.of(context).pushNamed(HomePage.route);
+                                  //     showSnackbar(context, "Employee Added without accessories",Colors.amber);
+                                  //   }
+                                  // } else {
+                                  //   showSnackbar(context, "Employee Id already exists",Colors.red);
+                                  // }
                                 }
                               : () {
-                                  final snackBar = SnackBar(
-                                    content: const Text('Please select accessories option !!!'),
-                                    action: SnackBarAction(
-                                      label: 'dismiss',
-                                      onPressed: () {},
-                                    ),
-                                  );
-                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                  showSnackbar(context, "Please select accessories option !!!", Colors.black);
                                 },
                           title: viewModel.selectedRadio == 1 ? "Save and continue" : "Add Employee",
                         ),

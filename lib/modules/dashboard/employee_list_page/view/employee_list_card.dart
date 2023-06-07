@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sidgs_it_app/modules/dashboard/employee_details_page/view/employee_details_page_view.dart';
 
 class EmployeeListCard extends StatelessWidget {
-  const EmployeeListCard({Key? key}) : super(key: key);
+  const EmployeeListCard({Key? key, this.empName, this.empId, this.designation,this.isAccessoriesAssigned,this.document}) : super(key: key);
+
+  final String? empName, empId, designation;
+  final bool? isAccessoriesAssigned;
+  final DocumentSnapshot? document;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class EmployeeListCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                color: Colors.blueAccent,
+                color: isAccessoriesAssigned==true?Colors.blueAccent:Colors.amberAccent,
                 width: 10,
               ),
               Container(
@@ -48,29 +53,62 @@ class EmployeeListCard extends StatelessWidget {
               ),
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                "Soubhagya Pradhan",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                "Software Developer",
-                style: TextStyle(fontSize: 14, color: Colors.black45),
-              ),
-            ],
+          SizedBox(
+            width: 10,
           ),
-           IconButton(
-               onPressed: (){
-                 Navigator.of(context).pushNamed(EmployeeDetailsPage.route);
-               },
-               icon:const Icon(
-                 Icons.arrow_forward_ios_rounded,
-                 color: Colors.blueAccent,
-                 size: 30,
-               )
-           )
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  empName!,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Emp Id: ${empId!}",
+                        style: TextStyle(fontSize: 14, color: Colors.black45),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        designation!,
+                        style: TextStyle(fontSize: 14, color: Colors.black45),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(EmployeeDetailsPage.route,arguments: {
+                  'document':document
+                });
+                // Navigator.of(context).pushNamed(
+                //   BankListPage.route,
+                //   arguments: {
+                //     'bankList': viewModel.bankList,
+                //   },
+                // );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => EmployeeDetailsPage(document: document),
+                //   ),
+                // );
+              },
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.blueAccent,
+                size: 25,
+              ))
         ],
       ),
     );

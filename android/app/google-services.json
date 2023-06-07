@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "760839039569",
+    "project_id": "sidgsitapp-e49ad",
+    "storage_bucket": "sidgsitapp-e49ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760839039569:android:5d778b3cb7830bdc336670",
+        "android_client_info": {
+          "package_name": "com.example.sidgs_it_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760839039569-on7qch32g4p0f7d7m9hdev1qgl46p9gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG2u-1c6PsVL_ek6kZoTp6xR-mg4NoQRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760839039569-on7qch32g4p0f7d7m9hdev1qgl46p9gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
